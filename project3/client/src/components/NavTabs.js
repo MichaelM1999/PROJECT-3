@@ -14,21 +14,28 @@ function NavTabs() {
         </li>
         <li className="nav-item">
           <Link
-            to="/Discover"
-            className={window.location.pathname === "/blog" ? "nav-link active" : "nav-link"}
+            to="/portfolio"
+            className={window.location.pathname === "/portfolio" ? "nav-link active" : "nav-link"}
           >
             Discover
           </Link>
         </li>
         <li className="nav-item">
           <Link
-            to="/Search"
-            className={window.location.pathname === "/contact" ? "nav-link active" : "nav-link"}
+            to="/purchase"
+            className={window.location.pathname === "/purchase" ? "nav-link active" : "nav-link"}
           >
             Search
           </Link>
         </li>
-  
+        <li className="nav-item">
+          <Link
+            to="/Search"
+            className={window.location.pathname === "/search" ? "nav-link active" : "nav-link"}
+          >
+            Search
+          </Link>
+        </li>
       </ul>
     );
   }
