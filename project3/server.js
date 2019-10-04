@@ -1,27 +1,22 @@
 var express = require("express");
-var path = require("path");
-const exphbs = require("express-handlebars");
-const mysql = require("mysql");
 
+const mongoose = require("mongoose");
+const routes = require("./routes");
 var app = express();
-var PORT = 3000;
-
-const connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "Mm64088031!",
-  database: "stocks_db"
-});
-
-app.use(express.static("public"));
-//put into public folder so that js and css all serve;
-app.engine("handlebars", exphbs({
-  defaultLayout: "main"
-}));
-app.set("view engine", "handlebars");
+var PORT = process.env.PORT || 3001;
 
 app.use(express.urlencoded({
   extended: true
 }));
 app.use(express.json());
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+app.use(routes);
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");
+
+app.listen(PORT, function() {
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});
