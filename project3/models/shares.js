@@ -10,6 +10,6 @@ const stockSchema = new Schema({
   date: { type: String, required: true }
 });
 
-const Stock = mongoose.model("Book", stockSchema);
+const Stock = mongoose.model("Stock", stockSchema);
 
 module.exports = Stock;

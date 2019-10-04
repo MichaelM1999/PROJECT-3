@@ -1,8 +1,18 @@
 import React from 'react';
+import API from '../../utils/api';
 
-const Account  = () => {
-    return (
-        <div>
+
+
+class Account extends Component {
+    state ={
+        user:""
+    }
+    createAccount = () =>{
+        API.newUser()
+    }
+    render() {
+        return (
+            <div>
                 <div>
                     Welcome To StockSim!
                 </div>
@@ -13,8 +23,7 @@ const Account  = () => {
                 </div>
         </div>
 
-    )
-
+)}
 }
 
 export default Account;

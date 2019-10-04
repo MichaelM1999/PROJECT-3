@@ -1,9 +1,15 @@
 import axios from "axios";
-const BASEURL = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=";
-const APIKEY = "SEY5863UOBCH9KA8";
 
 export default {
-  stockSearch: function(dval) {
-    return axios.get(BASEURL + dval + "&outputsize=compact&apikey=" + apikey)
+  // Gets all users
+  getUser: function() {
+    return axios.get("/api/user");
+  },
+  newUser: function(userData) {
+    return axios.post("/api/user", userData);
   }
+  // Saves a book to the database
+//   saveBook: function(us) {
+//     return axios.post("/api/books", bookData);
+//   }
 };
