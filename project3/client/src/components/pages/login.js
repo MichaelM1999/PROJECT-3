@@ -2,8 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Account from './account';
 import { Link } from "react-router-dom";
-
+import API from '../../utils/api';
 const Login = () => {
+    state = {
+       username: "",
+       password: "" 
+    }
+    getUser = (id) =>{
+        API.getUser(id) 
+    } 
     return (
         <div>
                 <div>
