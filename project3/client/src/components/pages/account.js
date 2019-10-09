@@ -1,7 +1,5 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import API from '../../utils/api';
-
-
 
 class Account extends Component {
     state ={
@@ -9,12 +7,13 @@ class Account extends Component {
     }
     createAccount = () =>{
         API.newUser()
-    }
-    render() {
         return (
             <div>
                 <div>
                     Welcome To StockSim!
+                </div>
+                <div>
+                    create an account
                 </div>
                 <div>
                     <input type="text" placeholder="User Name"></input>
@@ -23,7 +22,8 @@ class Account extends Component {
                 </div>
         </div>
 
-)}
+)
+}
 }
 
 export default Account;
