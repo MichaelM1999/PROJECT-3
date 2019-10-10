@@ -10,9 +10,6 @@ class Account extends Component {
         return (
             <div>
                 <div>
-                    Welcome To StockSim!
-                </div>
-                <div>
                     create an account
                 </div>
                 <div>

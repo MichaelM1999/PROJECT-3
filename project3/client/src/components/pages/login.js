@@ -23,9 +23,6 @@ class Login extends Component {
         return (
             <div>
                 <div>
-                    Welcome To StockSim!
-                </div>
-                <div>
                     <input 
                         type="text" 
                         placeholder="User Name"

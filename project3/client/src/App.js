@@ -1,23 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import NavTabs from "./components/NavTabs";
-import login from './components/pages/login';
-import Portfolio from './components/pages/portfolio';
-import purchase from './components/pages/purchase';
-import search from './components/pages/purchase';
-import Account from './components/pages/account';
+import Header from './components/header';
+import Footer from './components/footer';
 
 function App() {
   return (
-    <Router>
+    <div>
       <div>
-        <NavTabs />
-        <Route exact path="/" component={login} />
-        <Route exact path="/portfolio" component={Portfolio} />
-        <Route exact path="/purchase" component={purchase} />
-        <Route exact path="/search" component={search} />
+        <Header />
       </div>
-    </Router>
+      <div>
+        <Footer />
+      </div>
+    </div>
   );
 }
 
