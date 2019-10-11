@@ -1,18 +1,9 @@
 import React from 'react';
 import '../css/header.css';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Navtabs from '../components/NavTabs';
-import login from './pages/login';
-import Portfolio from './pages/portfolio';
-import purchase from './pages/purchase';
-import search from './pages/search';
-import Account from './pages/account';
-import Home from './pages/home';
-
+import { Link } from "react-router-dom";
 const Header = () => {
     return(
         <div className="container">
-            <img src="project3/client/public/money.jpeg" className="logo"></img>
             <h1 className="title">StockSim</h1>
             <div className="dropdown">
                 <button className="dropbtn">
@@ -21,17 +12,44 @@ const Header = () => {
                     <div className='bar3'></div>
                 </button>
                     <div className="dropdown-content">
-                        <Router>
-                            <Navtabs />
-                            <Route exact path="/" component={Home} />
-                            <Route exact path="/portfolio" component={Portfolio} />
-                            <Route exact path="/purchase" component={purchase} />
-                            <Route exact path="/search" component={search} />
-                        </Router>
-                    </div>
+                    <ul className="nav nav-tabs">
+        <li className="nav-item">
+          <Link
+            to="/portfolio"
+            className={window.location.pathname === "/portfolio" ? "nav-link active" : "nav-link"}
+            >
+            Portfolio
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            to="/purchase"
+            className={window.location.pathname === "/purchase" ? "nav-link active" : "nav-link"}
+            >
+            Purchase
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            to="/Search"
+            className={window.location.pathname === "/search" ? "nav-link active" : "nav-link"}
+            >
+            Search
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            to="/"
+            className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}
+            >
+            Home
+          </Link>
+        </li>
+      </ul>
+    </div>
 </div>
 
-        </div>
+</div>
     )
 }
 

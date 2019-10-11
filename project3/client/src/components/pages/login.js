@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Account from './account';
 import { Link } from "react-router-dom";
 import API from '../../utils/api';
 class Login extends Component {
@@ -16,6 +14,22 @@ class Login extends Component {
           [name]: value
         });
       };
+    handleSubmit = event => {
+        event.preventDefault();
+        let user = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        console.log(user);
+        API.getUser(user).then(res => {
+            if (res.err){
+                console.log("CANNOT CREATE USER");
+            }
+
+            window.location = '/portfolio';
+
+        });
+    }
     
     
 
@@ -31,13 +45,17 @@ class Login extends Component {
                         name='username'
                     ></input>
                     <input 
-                        type="text" 
+                        type="password" 
                         placeholder="Password"
                         value={this.state.password}
                         onChange={this.handleInputChange}
                         name='password'
                     ></input>
-                    <button type="submit" value="submit"></button>
+                    <button 
+                        type="submit" 
+                        value="submit"
+                        onClick={this.handleSubmit}
+                    >Login</button>
                     <Link
                         to="/account"
                         className={window.location.pathname === "/account" ? "nav-link active" : "nav-link"}

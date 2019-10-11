@@ -2,10 +2,14 @@ import axios from "axios";
 
 export default {
   // Gets all users
-  getUser: function(username) {
-    return axios.get("/api/user/" + username);
+  getUser: function(user) {
+    return axios.get("/api/user/", user);
   },
+
+
   newUser: function(userData) {
+
+    console.log('HELLO', userData);
     return axios.post("/api/user", userData);
   }
   // Saves a book to the database
