@@ -1,18 +1,61 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Account from './account';
+import React, {Component} from 'react';
 import { Link } from "react-router-dom";
+import API from '../../utils/api';
+class Login extends Component {
 
-const Login = () => {
-    return (
-        <div>
+    state = {
+       username: "",
+       password: "" 
+    }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+        });
+      };
+    handleSubmit = event => {
+        event.preventDefault();
+        let user = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        console.log(user);
+        API.getUser(user).then(res => {
+            if (res.err){
+                console.log("CANNOT CREATE USER");
+            }
+
+            window.location = '/portfolio';
+
+        });
+    }
+    
+    
+
+    render(){ 
+        return (
+            <div>
                 <div>
-                    Welcome To StockSim!
-                </div>
-                <div>
-                    <input type="text" placeholder="User Name"></input>
-                    <input type="text" placeholder="Password"></input>
-                    <input type="submit" value="submit"></input>
+                    <input 
+                        type="text" 
+                        placeholder="User Name"
+                        value={this.state.username}
+                        onChange={this.handleInputChange}
+                        name='username'
+                    ></input>
+                    <input 
+                        type="password" 
+                        placeholder="Password"
+                        value={this.state.password}
+                        onChange={this.handleInputChange}
+                        name='password'
+                    ></input>
+                    <button 
+                        type="submit" 
+                        value="submit"
+                        onClick={this.handleSubmit}
+                    >Login</button>
                     <Link
                         to="/account"
                         className={window.location.pathname === "/account" ? "nav-link active" : "nav-link"}
@@ -21,8 +64,8 @@ const Login = () => {
                     </Link>
                 </div>
         </div>
-
-    )
+        )
+} 
 
 }
 

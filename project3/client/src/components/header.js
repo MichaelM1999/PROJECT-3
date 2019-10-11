@@ -1,14 +1,23 @@
-import React from "react";
+import React from 'react';
+import '../css/header.css';
 import { Link } from "react-router-dom";
-
-function NavTabs() {
-    return (
-      <ul className="nav nav-tabs">
+const Header = () => {
+    return(
+        <div className="container">
+            <h1 className="title">StockSim</h1>
+            <div className="dropdown">
+                <button className="dropbtn">
+                    <div className='bar1'></div>
+                    <div className='bar2'></div>
+                    <div className='bar3'></div>
+                </button>
+                    <div className="dropdown-content">
+                    <ul className="nav nav-tabs">
         <li className="nav-item">
           <Link
             to="/portfolio"
             className={window.location.pathname === "/portfolio" ? "nav-link active" : "nav-link"}
-          >
+            >
             Portfolio
           </Link>
         </li>
@@ -16,7 +25,7 @@ function NavTabs() {
           <Link
             to="/purchase"
             className={window.location.pathname === "/purchase" ? "nav-link active" : "nav-link"}
-          >
+            >
             Purchase
           </Link>
         </li>
@@ -24,7 +33,7 @@ function NavTabs() {
           <Link
             to="/Search"
             className={window.location.pathname === "/search" ? "nav-link active" : "nav-link"}
-          >
+            >
             Search
           </Link>
         </li>
@@ -32,13 +41,16 @@ function NavTabs() {
           <Link
             to="/"
             className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}
-          >
+            >
             Home
           </Link>
         </li>
       </ul>
-    );
-  }
-  
-  export default NavTabs;
-  
+    </div>
+</div>
+
+</div>
+    )
+}
+
+export default Header;
