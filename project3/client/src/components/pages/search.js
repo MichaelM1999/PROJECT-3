@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import API from '../../utils/stockApi';
 import * as moment from 'moment';
+
 //time js for recent date so even on weekends it gets correct numbers
 const year = moment().format("YYYY");
 const month = moment().format("MM");
@@ -44,12 +45,8 @@ class Search extends Component{
       err => {
         console.log(err);
      }); 
-    //   res.data["Time Series (Daily)"][todaysdate]["6. volume"],
-    //   res.data["Meta Data"]["2. Symbol"], console.log(res))
-    //   console.log(todaysdate)
-    //   console.log(this.state.price, "state");
-
     }
+
     handleSubmit = event => {
         event.preventDefault()
         let stock = this.state.StockName
@@ -83,6 +80,7 @@ class Search extends Component{
                 <div
 
                 ></div>
+
             </div>
 
         )
