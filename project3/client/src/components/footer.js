@@ -3,7 +3,7 @@ import '../css/footer.css';
 const Footer = () => {
     return(
         <div className="footer">
-            <div className="words">
+            <div className="footer-words">
                 Thank you for using StockSim any questions?
                 take a look at our contact page
 

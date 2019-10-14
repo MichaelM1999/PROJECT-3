@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import API from '../../utils/api';
-
+import '../../css/account.css'
 class Account extends Component {
     state ={
         user: "",
@@ -34,31 +34,37 @@ class Account extends Component {
 
     render(){
         return (
-        <div>
-                <div>
-                    create an account
+        <div className='accForm'>
+            <div className='formbx'>
+
+                <div className='words'>
+                    Create an Account
                 </div>
                 <div>
                     <input
+                    className='input'
                     type="text" 
                     placeholder="User Name"
                     name="user"
                     onChange={this.handleInputChange} 
                     value={this.state.username}
                     ></input>
-                    <input 
+                    <input
+                    className='input' 
                     type="password" 
                     placeholder="Password"
                     name="password"
                     onChange={this.handleInputChange} 
                     value={this.state.password}
                     ></input>
-                    <button 
+                    <button
+                    className='submitbtn'
                     type="submit" 
                     value="submit" 
                     onClick={this.handleSubmit}
-                    > submit </button>
+                    ><span>Submit </span></button>
                 </div>
+                    </div>
         </div>
         )
     }

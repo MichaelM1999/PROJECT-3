@@ -6,25 +6,33 @@ module.exports = {
 
 
         db.User
-          .findOne(req.username)
+          .findOne(req.username).then(data => {
+            if(data.username === req.body.username || dbModel.username === req.body.password){
+              (data => res.json(data))
+            }
+            else {
+              res.send({err: 'username and password incorrect'})
+            }
+          })
           .catch(err => res.status(422).json(err));
           //match username's password here...
           //use if statement
-          if(dbModel.username === req.username || dbModel.username === req.password){
-            (dbModel => res.json(dbModel))
-          }
     },
     create: function(req, res) {
        //make a statement to check if user exists already.
+       console.log('HEY', req.body);
         db.User
-          .findOne(req.username)
-          if (req.username === res.username){
-            res.json("someone is already using the username: " + req.username)
-          } else{
-            create(req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-          }
+          .exists(req.body).then(data => {
+            if (data) {
+                res.send({err: 'User already exists!'})
+              }
+              else {
+                db.User.create(req.body).then(data => res.json(data))
+                .catch(err => res.status(422).json(err));
+              }
+
+          });
+        
       }
 }
 
