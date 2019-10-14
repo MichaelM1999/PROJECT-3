@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import API from '../../utils/stockApi';
 import * as moment from 'moment';
 import createPlotlyComponent from 'react-plotly.js/factory';
+import Recomend from '../stockrec';
 const Plotly = window.Plotly;
 const Plot = createPlotlyComponent(Plotly);
 
@@ -277,6 +278,7 @@ class Search extends Component{
                         showlegend: false
                     }}
                         />
+                <Recomend />
             </div>
 
         )
