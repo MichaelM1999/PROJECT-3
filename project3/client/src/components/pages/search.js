@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import API from '../../utils/stockApi';
 import * as moment from 'moment';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import Recomend from '../stockrec';
+// import Recomend from '../stockrec';
 import '../../css/search.css';
 const Plotly = window.Plotly;
 const Plot = createPlotlyComponent(Plotly);
@@ -127,15 +127,17 @@ class Search extends Component{
                     onClick={this.handleSubmit}
                     ><span>Search</span></button>
                 </div>
-                <h2>
-                    searching for {(this.state.StockName)} is {this.state.updownD} ${this.state.dailychange} in the past day
-                </h2>
-                <h3>
-                    The Price is ${this.state.price}
-                </h3>
-                <h3>
-                    there are currently {this.state.volume} open for purchase
-                </h3>
+                  <div className="infoTab">
+                    <h2 className="searching">
+                        Searching for {(this.state.StockName)} is {this.state.updownD} ${this.state.dailychange} in the past day
+                    </h2>
+                    <h3>
+                        The Price is ${this.state.price}
+                    </h3>
+                    <h3>
+                        There are currently {this.state.volume} shares open for purchase
+                    </h3>
+                  
                 <div>
                 </div>
                 <div className="boxes">
@@ -165,7 +167,11 @@ class Search extends Component{
                           this.state.priceArray[5],
                           this.state.priceArray[6]
                           ],   
-                      type: 'scatter'
+                      type: 'scatter',
+                      mode: "lines",
+                      line: {
+                        color: "black"
+                      }
                       }]}
                       layout={{width: 450,
                           height: 450, 
@@ -176,7 +182,7 @@ class Search extends Component{
                                 font: {
                                   family: 'Courier New, monospace',
                                   size: 18,
-                                  color: 'lightGreen'
+                                  color: 'black'
                                 }
                               },
                             },
@@ -186,12 +192,12 @@ class Search extends Component{
                                 font: {
                                   family: 'Courier New, monospace',
                                   size: 18,
-                                  color: 'lightGreen'
+                                  color: 'black'
                                 }
                               },
                             },
-                          paper_bgcolor: '#7f7f7f',
-                          plot_bgcolor: '#c7c7c7',
+                          paper_bgcolor: 'lightgray',
+                          plot_bgcolor: 'lightgray',
                           transition: {
                           duration: 500,
                           easing: 'cubic-in-out'
@@ -202,7 +208,7 @@ class Search extends Component{
                           font: {
                               family: 'Courier New, monospace',
                               size: 18,
-                              color: 'lightgreen'
+                              color: 'black'
                           },
                           showlegend: false
                       }}
@@ -279,6 +285,10 @@ class Search extends Component{
                   this.state.priceArray[29],
                       ],   
                       type: 'scatter',
+                      mode: "lines",
+                      line: {
+                        color: "black"
+                      }
                   }]}
                   layout={{width: 450,
                           height: 450, 
@@ -289,7 +299,7 @@ class Search extends Component{
                                 font: {
                                   family: 'Courier New, monospace',
                                   size: 18,
-                                  color: 'lightGreen'
+                                  color: 'black'
                                 }
                               },
                             },
@@ -299,12 +309,12 @@ class Search extends Component{
                                 font: {
                                   family: 'Courier New, monospace',
                                   size: 18,
-                                  color: 'lightGreen'
+                                  color: 'black'
                                 }
                               },
                             },
-                          paper_bgcolor: '#7f7f7f',
-                          plot_bgcolor: '#c7c7c7',
+                          paper_bgcolor: 'lightgray',
+                          plot_bgcolor: 'lightgray',
                           transition: {
                           duration: 500,
                           easing: 'cubic-in-out'
@@ -315,14 +325,15 @@ class Search extends Component{
                           font: {
                               family: 'Courier New, monospace',
                               size: 18,
-                              color: 'lightgreen'
+                              color: 'black'
                           },
                           showlegend: false
                       }}
                           />
                         </div>
                       </div>
-                <Recomend />
+                      </div>
+                {/* <Recomend /> */}
             </div>
 
         )

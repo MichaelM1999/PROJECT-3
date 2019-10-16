@@ -1,10 +1,10 @@
 .searchbx{
     text-align: center;
-    background-color: lightgreen;
+    background-color: black;
     width: 60%;
     margin-left: 20%;
     border-radius: 20px;
-    box-shadow: 10px 15px 5px gray;
+    box-shadow: 10px 15px 5px black;
 }
 .whattosearch {
     font-size: 20px;
@@ -69,4 +69,35 @@ input[type=text]:focus {
 }
 .weeklybx, .monthlybx {
   display:inline;
+}
+.infoTab {
+  text-align: center;
+  background-color: black;
+  width: 60%;
+  border-radius: 20px;
+  margin-left: 20%;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  box-shadow: 10px 10px 10px 10px black;
+}
+.searching {
+  background-color: #555555;
+  border-radius: 20px 20px 0px 0px;
+  padding: 20px;
+  margin-top: 0px;
+  color: white;
+}
+body, html {
+  height: 100%;
+  margin: 0px;
+}
+.bg {
+  background: url('../images/background.jpeg')  no-repeat top center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
 }

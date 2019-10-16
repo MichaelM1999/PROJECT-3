@@ -12,7 +12,7 @@ import './css/app.css';
 function App() {
   return (
   <Router>
-    <div>
+    <div className="bg">
       <div>
         <Header />
         <Switch>
