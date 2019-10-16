@@ -7,6 +7,7 @@ import Portfolio from './components/pages/portfolio';
 import purchase from './components/pages/purchase';
 import search from './components/pages/search';
 import Account from './components/pages/account';
+import './css/app.css';
 
 function App() {
   return (
