@@ -3,6 +3,7 @@ import API from '../../utils/stockApi';
 import * as moment from 'moment';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import Recomend from '../stockrec';
+import '../../css/search.css';
 const Plotly = window.Plotly;
 const Plot = createPlotlyComponent(Plotly);
 
@@ -36,7 +37,13 @@ class Search extends Component{
         priceArray: "",
         dateArray: "",
         weeklygraph: true,
-        monthlygraph: false
+        monthlygraph: false,
+        weeklychange:"",
+        monthlychange:"",
+        dailychange:"",
+        updownD: "",
+        updownW: "",
+        updownM: "",
     }
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -61,7 +68,28 @@ class Search extends Component{
         this.setState({priceArray: priceArray,
             dateArray: dateArray,
         })
-          
+        this.setState({weeklychange: ((this.state.priceArray[0])-(this.state.priceArray[6])).toString().slice(0,8),
+            monthlychange: ((this.state.priceArray[0])-(this.state.priceArray[29])).toString().slice(0,8),
+            dailychange: ((this.state.priceArray[0])-(this.state.priceArray[1])).toString().slice(0,8)
+        })
+        if (Math.sign(this.state.dailychange) === 1){
+          this.setState({updownD: "up"
+          })
+        } else {
+          this.setState({updownD: "down"})
+        }
+        if (Math.sign(this.state.monthlychange) === 1){
+          this.setState({updownM: "up"
+          })
+        } else {
+          this.setState({updownM: "down"})
+        }
+        if (Math.sign(this.state.weeklychange) === 1){
+          this.setState({updownW: "up"
+          })
+        } else {
+          this.setState({updownW: "down"})
+        }
         this.setState({ price: res.data["Time Series (Daily)"][todaysdate]["4. close"],
                 volume: res.data["Time Series (Daily)"][todaysdate]["6. volume"],
                 StockName: res.data["Meta Data"]["2. Symbol"]},
@@ -83,20 +111,24 @@ class Search extends Component{
         return(
             <div>
                 <h1>{this.state.todaysdate}</h1>
-                <div>what would you like to search for</div>
-                <input
-                type="text"
-                name="StockName"
-                onChange={this.handleInputChange}
-                value={this.state.StockName}
-                ></input>
-                <button 
-                type="submit" 
-                value="submit"
-                onClick={this.handleSubmit}
-                >Search</button>
+                <div className="searchbx">
+                    <div className="whattosearch">What would you like to search for?</div>
+                    <input
+                    className="wordbx"
+                    type="text"
+                    name="StockName"
+                    onChange={this.handleInputChange}
+                    value={this.state.StockName}
+                    ></input>
+                    <button
+                    className="searchSbtn" 
+                    type="submit" 
+                    value="submit"
+                    onClick={this.handleSubmit}
+                    ><span>Search</span></button>
+                </div>
                 <h2>
-                    searching for {(this.state.StockName)}
+                    searching for {(this.state.StockName)} is {this.state.updownD} ${this.state.dailychange} in the past day
                 </h2>
                 <h3>
                     The Price is ${this.state.price}
@@ -106,178 +138,190 @@ class Search extends Component{
                 </h3>
                 <div>
                 </div>
-                <Plot
-                //weekly graph
-                className="weekly"
-                data={[{
-                    //prices
-                    x: [this.state.dateArray[0],
-                        this.state.dateArray[1],
-                        this.state.dateArray[2],
-                        this.state.dateArray[3],
-                        this.state.dateArray[4],
-                        this.state.dateArray[5],
-                        this.state.dateArray[6],
-                        ],
-                    //dates 
-                    y: [this.state.priceArray[0], 
-                        this.state.priceArray[1], 
-                        this.state.priceArray[2],
-                        this.state.priceArray[3],
-                        this.state.priceArray[4],
-                        this.state.priceArray[5],
-                        this.state.priceArray[6]
-                        ],   
-                    type: 'scatter'
-                    }]}
-                    layout={{width: 500,
-                        height: 500, 
-                        title: "Weekly " + this.state.StockName,
-                        xaxis: {
-                            title: {
-                              text: 'Date',
-                              font: {
-                                family: 'Courier New, monospace',
-                                size: 18,
-                                color: 'lightGreen'
-                              }
+                <div className="boxes">
+                <div className="weeklybx">
+                <div>
+                  {this.state.StockName} is {this.state.updownW} ${this.state.weeklychange} in the past week
+                </div>
+                  <Plot
+                  //weekly graph
+                  className="weekly"
+                  data={[{
+                      //prices
+                      x: [this.state.dateArray[0],
+                          this.state.dateArray[1],
+                          this.state.dateArray[2],
+                          this.state.dateArray[3],
+                          this.state.dateArray[4],
+                          this.state.dateArray[5],
+                          this.state.dateArray[6],
+                          ],
+                      //dates 
+                      y: [this.state.priceArray[0], 
+                          this.state.priceArray[1], 
+                          this.state.priceArray[2],
+                          this.state.priceArray[3],
+                          this.state.priceArray[4],
+                          this.state.priceArray[5],
+                          this.state.priceArray[6]
+                          ],   
+                      type: 'scatter'
+                      }]}
+                      layout={{width: 450,
+                          height: 450, 
+                          title: "Weekly " + this.state.StockName,
+                          xaxis: {
+                              title: {
+                                text: 'Date',
+                                font: {
+                                  family: 'Courier New, monospace',
+                                  size: 18,
+                                  color: 'lightGreen'
+                                }
+                              },
                             },
-                          },
-                          yaxis: {
-                            title: {
-                              text: 'Value in USD',
-                              font: {
-                                family: 'Courier New, monospace',
-                                size: 18,
-                                color: 'lightGreen'
-                              }
+                            yaxis: {
+                              title: {
+                                text: 'Value in USD',
+                                font: {
+                                  family: 'Courier New, monospace',
+                                  size: 18,
+                                  color: 'lightGreen'
+                                }
+                              },
                             },
+                          paper_bgcolor: '#7f7f7f',
+                          plot_bgcolor: '#c7c7c7',
+                          transition: {
+                          duration: 500,
+                          easing: 'cubic-in-out'
                           },
-                        paper_bgcolor: '#7f7f7f',
-                        plot_bgcolor: '#c7c7c7',
-                        transition: {
-                        duration: 500,
-                        easing: 'cubic-in-out'
-                        },
-                        frame: {
-                        duration: 500
-                        },
-                        font: {
-                            family: 'Courier New, monospace',
-                            size: 18,
-                            color: 'lightgreen'
-                        },
-                        showlegend: false
-                    }}
-                />
-                <Plot
-                    className="monthly"
-                    data={[{ 
-                    x: [this.state.dateArray[0],
-                    this.state.dateArray[1],
-                    this.state.dateArray[2],
-                    this.state.dateArray[3],
-                    this.state.dateArray[4],
-                    this.state.dateArray[5],
-                    this.state.dateArray[6],
-                    this.state.dateArray[7],
-                    this.state.dateArray[8],
-                    this.state.dateArray[9],
-                    this.state.dateArray[10],
-                    this.state.dateArray[11],
-                    this.state.dateArray[12],
-                    this.state.dateArray[13],
-                    this.state.dateArray[14],
-                    this.state.dateArray[15],
-                    this.state.dateArray[16],
-                    this.state.dateArray[17],
-                    this.state.dateArray[18],
-                    this.state.dateArray[19],
-                    this.state.dateArray[20],
-                    this.state.dateArray[21],
-                    this.state.dateArray[22],
-                    this.state.dateArray[23],
-                    this.state.dateArray[24],
-                    this.state.dateArray[25],
-                    this.state.dateArray[26],
-                    this.state.dateArray[27],
-                    this.state.dateArray[28],
-                    this.state.dateArray[29],
-                    ],
-                //dates 
-                y: [this.state.priceArray[0],
-                this.state.priceArray[1],
-                this.state.priceArray[2],
-                this.state.priceArray[3],
-                this.state.priceArray[4],
-                this.state.priceArray[5],
-                this.state.priceArray[6],
-                this.state.priceArray[7],
-                this.state.priceArray[8],
-                this.state.priceArray[9],
-                this.state.priceArray[10],
-                this.state.priceArray[11],
-                this.state.priceArray[12],
-                this.state.priceArray[13],
-                this.state.priceArray[14],
-                this.state.priceArray[15],
-                this.state.priceArray[16],
-                this.state.priceArray[17],
-                this.state.priceArray[18],
-                this.state.priceArray[19],
-                this.state.priceArray[20],
-                this.state.priceArray[21],
-                this.state.priceArray[22],
-                this.state.priceArray[23],
-                this.state.priceArray[24],
-                this.state.priceArray[25],
-                this.state.priceArray[26],
-                this.state.priceArray[27],
-                this.state.priceArray[28],
-                this.state.priceArray[29],
-                    ],   
-                    type: 'scatter',
-                }]}
-                layout={{width: 500,
-                        height: 500, 
-                        title: "Monthly " + this.state.StockName,
-                        xaxis: {
-                            title: {
-                              text: 'Date',
-                              font: {
-                                family: 'Courier New, monospace',
-                                size: 18,
-                                color: 'lightGreen'
-                              }
+                          frame: {
+                          duration: 500
+                          },
+                          font: {
+                              family: 'Courier New, monospace',
+                              size: 18,
+                              color: 'lightgreen'
+                          },
+                          showlegend: false
+                      }}
+                  />
+                  </div>
+                <div>
+                {this.state.StockName} is {this.state.updownM} ${this.state.monthlychange} in the past month
+                </div>
+                <div className="monthlybx">
+                  <Plot
+                      className="monthly"
+                      data={[{ 
+                      x: [this.state.dateArray[0],
+                      this.state.dateArray[1],
+                      this.state.dateArray[2],
+                      this.state.dateArray[3],
+                      this.state.dateArray[4],
+                      this.state.dateArray[5],
+                      this.state.dateArray[6],
+                      this.state.dateArray[7],
+                      this.state.dateArray[8],
+                      this.state.dateArray[9],
+                      this.state.dateArray[10],
+                      this.state.dateArray[11],
+                      this.state.dateArray[12],
+                      this.state.dateArray[13],
+                      this.state.dateArray[14],
+                      this.state.dateArray[15],
+                      this.state.dateArray[16],
+                      this.state.dateArray[17],
+                      this.state.dateArray[18],
+                      this.state.dateArray[19],
+                      this.state.dateArray[20],
+                      this.state.dateArray[21],
+                      this.state.dateArray[22],
+                      this.state.dateArray[23],
+                      this.state.dateArray[24],
+                      this.state.dateArray[25],
+                      this.state.dateArray[26],
+                      this.state.dateArray[27],
+                      this.state.dateArray[28],
+                      this.state.dateArray[29],
+                      ],
+                  //dates 
+                  y: [this.state.priceArray[0],
+                  this.state.priceArray[1],
+                  this.state.priceArray[2],
+                  this.state.priceArray[3],
+                  this.state.priceArray[4],
+                  this.state.priceArray[5],
+                  this.state.priceArray[6],
+                  this.state.priceArray[7],
+                  this.state.priceArray[8],
+                  this.state.priceArray[9],
+                  this.state.priceArray[10],
+                  this.state.priceArray[11],
+                  this.state.priceArray[12],
+                  this.state.priceArray[13],
+                  this.state.priceArray[14],
+                  this.state.priceArray[15],
+                  this.state.priceArray[16],
+                  this.state.priceArray[17],
+                  this.state.priceArray[18],
+                  this.state.priceArray[19],
+                  this.state.priceArray[20],
+                  this.state.priceArray[21],
+                  this.state.priceArray[22],
+                  this.state.priceArray[23],
+                  this.state.priceArray[24],
+                  this.state.priceArray[25],
+                  this.state.priceArray[26],
+                  this.state.priceArray[27],
+                  this.state.priceArray[28],
+                  this.state.priceArray[29],
+                      ],   
+                      type: 'scatter',
+                  }]}
+                  layout={{width: 450,
+                          height: 450, 
+                          title: "Monthly " + this.state.StockName,
+                          xaxis: {
+                              title: {
+                                text: 'Date',
+                                font: {
+                                  family: 'Courier New, monospace',
+                                  size: 18,
+                                  color: 'lightGreen'
+                                }
+                              },
                             },
-                          },
-                          yaxis: {
-                            title: {
-                              text: 'Value in USD',
-                              font: {
-                                family: 'Courier New, monospace',
-                                size: 18,
-                                color: 'lightGreen'
-                              }
+                            yaxis: {
+                              title: {
+                                text: 'Value in USD',
+                                font: {
+                                  family: 'Courier New, monospace',
+                                  size: 18,
+                                  color: 'lightGreen'
+                                }
+                              },
                             },
+                          paper_bgcolor: '#7f7f7f',
+                          plot_bgcolor: '#c7c7c7',
+                          transition: {
+                          duration: 500,
+                          easing: 'cubic-in-out'
                           },
-                        paper_bgcolor: '#7f7f7f',
-                        plot_bgcolor: '#c7c7c7',
-                        transition: {
-                        duration: 500,
-                        easing: 'cubic-in-out'
-                        },
-                        frame: {
-                        duration: 500
-                        },
-                        font: {
-                            family: 'Courier New, monospace',
-                            size: 18,
-                            color: 'lightgreen'
-                        },
-                        showlegend: false
-                    }}
-                        />
+                          frame: {
+                          duration: 500
+                          },
+                          font: {
+                              family: 'Courier New, monospace',
+                              size: 18,
+                              color: 'lightgreen'
+                          },
+                          showlegend: false
+                      }}
+                          />
+                        </div>
+                      </div>
                 <Recomend />
             </div>
 
