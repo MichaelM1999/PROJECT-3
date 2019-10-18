@@ -9,6 +9,8 @@
 .whattosearch {
     font-size: 20px;
     margin: 5px;
+    color: white;
+    margin-top: 10px;
 }
 .searchSbtn {
     background-color: #555555;
@@ -100,4 +102,7 @@ body, html {
   height: 100%;
   width: 100%;
   border-radius: 20px;
+}
+.updown {
+  color: white;
 }

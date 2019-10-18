@@ -142,7 +142,7 @@ class Search extends Component{
                 </div>
                 <div className="boxes">
                 <div className="weeklybx">
-                <div>
+                <div className="updown">
                   {this.state.StockName} is {this.state.updownW} ${this.state.weeklychange} in the past week
                 </div>
                   <Plot
@@ -214,7 +214,7 @@ class Search extends Component{
                       }}
                   />
                   </div>
-                <div>
+                <div className="updown">
                 {this.state.StockName} is {this.state.updownM} ${this.state.monthlychange} in the past month
                 </div>
                 <div className="monthlybx">
