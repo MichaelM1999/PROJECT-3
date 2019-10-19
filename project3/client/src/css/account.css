@@ -1,15 +1,15 @@
 .accForm {
     text-align: center;
-    padding: 200px;
+    padding: 300px;
 }
 .formbx {
-    background-color: lightgreen;
+    background-color: black;
     border-radius: 20px;
-    box-shadow: 10px 15px 5px gray;
+    box-shadow: 5px 5px 5px black;
 }
 .words {
     font-size: 25px;
-    color: black;
+    color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
 .input {

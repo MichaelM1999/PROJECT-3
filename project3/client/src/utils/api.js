@@ -5,7 +5,7 @@ export default {
   getUser: function(user) {
 
     console.log('hello', user)
-    return axios.get("/api/user/", user);
+    return axios.post("/api/user/login", user);
   },
 
 

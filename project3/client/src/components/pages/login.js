@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
 import API from '../../utils/api';
+import '../../css/login.css';
+import Footer from '../footer';
 class Login extends Component {
 
     state = {
        username: "",
-       password: "" 
+       password: "",
+       loginRes: "" 
     }
 
     handleInputChange = event => {
@@ -22,12 +25,13 @@ class Login extends Component {
         }
         console.log(user);
         API.getUser(user).then(res => {
-            if (res.err){
-                console.log("CANNOT CREATE USER");
+            if (!res.data){
+                this.setState({loginRes: "incorrect username or password!"});
+                console.log(this.state.loginRes);
             }
-
-            window.location = '/portfolio';
-
+            else {
+                window.location = '/portfolio'
+            }
         });
     }
     
@@ -35,33 +39,46 @@ class Login extends Component {
 
     render(){ 
         return (
-            <div>
-                <div>
-                    <input 
+            <div className="loginbx">
+                <div className="loginform">
+                    <div className="words">
+                        Log In!
+                        <p className="loginErr"
+                        >
+                        {this.state.loginRes}
+                        </p>
+                    </div>
+                    <div>
+                        <input
+                        className="input" 
                         type="text" 
                         placeholder="User Name"
                         value={this.state.username}
                         onChange={this.handleInputChange}
                         name='username'
-                    ></input>
-                    <input 
+                        ></input>
+                        <input
+                        className="input" 
                         type="password" 
                         placeholder="Password"
                         value={this.state.password}
                         onChange={this.handleInputChange}
                         name='password'
-                    ></input>
-                    <button 
+                        ></input>
+                        <button
+                        className="createAccbtn" 
                         type="submit" 
                         value="submit"
                         onClick={this.handleSubmit}
-                    >Login</button>
-                    <Link
+                        ><span>Login</span></button>
+                        <Link
                         to="/account"
-                        className={window.location.pathname === "/account" ? "nav-link active" : "nav-link"}
-                        >
-                        Don't have an account?
-                    </Link>
+                        className={window.location.pathname === "/account" ? "nav-link active" : "nav-link"} 
+                        ><button className="createAccbtn">
+                        <span>Don't have an account?</span>
+                        </button>
+                        </Link>
+                    </div>
                 </div>
         </div>
         )
