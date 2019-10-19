@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
-import API from '../../utils/stockApi';
+import API from '../../utils/stockApi3';
 import * as moment from 'moment';
 import createPlotlyComponent from 'react-plotly.js/factory';
-// import Recomend from '../stockrec';
+import Recomend from '../stockrec';
+import Recomend2 from '../stockrec2';
 import '../../css/search.css';
+import Footer from '../footer';
+import Header from '../header';
 const Plotly = window.Plotly;
 const Plot = createPlotlyComponent(Plotly);
 
@@ -110,6 +113,9 @@ class Search extends Component{
     render(){
         return(
             <div>
+              <Header />
+              <Recomend />
+              <Recomend2 />
                 <h1>{this.state.todaysdate}</h1>
                 <div className="searchbx">
                     <div className="whattosearch">What would you like to search for?</div>
@@ -333,7 +339,7 @@ class Search extends Component{
                         </div>
                       </div>
                       </div>
-                {/* <Recomend /> */}
+                <Footer />
             </div>
 
         )

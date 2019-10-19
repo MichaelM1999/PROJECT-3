@@ -23,10 +23,10 @@ const Header = () => {
         </li>
         <li className="nav-item">
           <Link
-            to="/purchase"
-            className={window.location.pathname === "/purchase" ? "nav-link active" : "nav-link"}
+            to="/contact"
+            className={window.location.pathname === "/contact" ? "nav-link active" : "nav-link"}
             >
-            Purchase
+            Contact
           </Link>
         </li>
         <li className="nav-item">

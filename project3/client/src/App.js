@@ -4,7 +4,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import login from './components/pages/login';
 import Portfolio from './components/pages/portfolio';
-import purchase from './components/pages/purchase';
+import contact from './components/pages/contact';
 import search from './components/pages/search';
 import Account from './components/pages/account';
 import './css/app.css';
@@ -14,11 +14,10 @@ function App() {
   <Router>
     <div className="bg">
       <div>
-        <Header />
         <Switch>
             <Route exact path="/" component={login} />
             <Route exact path="/portfolio" component={Portfolio} />
-            <Route exact path="/purchase" component={purchase} />
+            <Route exact path="/contact" component={contact} />
             <Route exact path="/search" component={search} />
             <Route exact path="/account" component={Account} />
         </Switch>
