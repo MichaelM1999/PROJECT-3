@@ -5,12 +5,8 @@ import createPlotlyComponent from 'react-plotly.js/factory';
 import Recomend from '../stockrec';
 import Recomend2 from '../stockrec2';
 import '../../css/search.css';
-<<<<<<< HEAD
-import Header from "../header";
-=======
 import Footer from '../footer';
 import Header from '../header';
->>>>>>> 70b7f14e750efe303ea955275dc6254037bc11fa
 const Plotly = window.Plotly;
 const Plot = createPlotlyComponent(Plotly);
 
@@ -117,13 +113,9 @@ class Search extends Component{
     render(){
         return(
             <div>
-<<<<<<< HEAD
-              <Header/>
-=======
               <Header />
               <Recomend />
               <Recomend2 />
->>>>>>> 70b7f14e750efe303ea955275dc6254037bc11fa
                 <h1>{this.state.todaysdate}</h1>
                 <div className="searchbx">
                     <div className="whattosearch">What would you like to search for?</div>

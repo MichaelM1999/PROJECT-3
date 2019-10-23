@@ -1,18 +1,13 @@
 import React from 'react';
 import Header from '../header';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import Header from "../header"
 const Plotly = window.Plotly;
 const Plot = createPlotlyComponent(Plotly);
 
 const Portfolio = () => {
     return (
         <div>
-<<<<<<< HEAD
-            <Header/>
-=======
             <Header />
->>>>>>> 70b7f14e750efe303ea955275dc6254037bc11fa
             <div>
                 <h1>Welcome to your Portfolio</h1>
                 <p>youre most recent purchase was{}for {}</p>

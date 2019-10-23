@@ -5,7 +5,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import login from './components/pages/login';
 import Portfolio from './components/pages/portfolio';
-import contact from './components/pages/contact';
+import contact from './components/pages/Contact';
 import search from './components/pages/search';
 import Account from './components/pages/account';
 import './css/app.css';
