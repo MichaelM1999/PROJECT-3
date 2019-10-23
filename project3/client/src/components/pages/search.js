@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import createPlotlyComponent from 'react-plotly.js/factory';
 // import Recomend from '../stockrec';
 import '../../css/search.css';
+import Header from "../header";
 const Plotly = window.Plotly;
 const Plot = createPlotlyComponent(Plotly);
 
@@ -110,6 +111,7 @@ class Search extends Component{
     render(){
         return(
             <div>
+              <Header/>
                 <h1>{this.state.todaysdate}</h1>
                 <div className="searchbx">
                     <div className="whattosearch">What would you like to search for?</div>
