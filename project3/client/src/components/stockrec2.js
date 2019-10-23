@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import '../css/recomend.css';
-import API from '../utils/stockApi';
+import '../css/recomend2.css';
+import API from '../utils/stockApi2';
 
-class Recomend extends Component{
+class Recomend2 extends Component{
 
   componentDidMount(){
     this.currentStock();
@@ -10,7 +10,7 @@ class Recomend extends Component{
   
   state = {
     stock: "",
-    stockArry :["AMZN","GOOGL","GOOG","JNJ","BRK.B","JPM","DIS"],
+    stockArry :["APPS","RCEL","INS","EIDX","ARWR","BASI","BLU"],
     value: "",
     changePercentage: "",
     priceArray: "",
@@ -66,14 +66,13 @@ class Recomend extends Component{
     render(){
 
       return(
-        <div className="recomendBX">
-          <p className="stockTxt">Popular Stocks</p>
-          <h3 className="stockTxt">{this.state.stock}</h3>
-        <p className="changepercent stockTxt" style={{'color': this.state.upDown}}>
+        <div className="recomendBX2">
+          <h3 className="stockTxt2">{this.state.stock}</h3>
+        <p className="changepercent2 stockTxt2" style={{'color': this.state.upDown}}>
           {this.state.changePercentage}
         </p>
         </div>
     )
   }
 }
-export default Recomend
+export default Recomend2

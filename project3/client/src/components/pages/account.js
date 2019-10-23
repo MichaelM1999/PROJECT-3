@@ -4,7 +4,8 @@ import '../../css/account.css'
 class Account extends Component {
     state ={
         user: "",
-        password: ""
+        password: "",
+        loginRes: ""
     }
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -21,14 +22,16 @@ class Account extends Component {
             password: this.state.password
         }
 
-        console.log(user);
         API.newUser(user).then(res => {
-            if (res.err){
-                console.log("CANNOT CREATE USER");
+            if (res.data.err){
+                this.setState({loginRes: "User already exists"});
+                console.log(this.state.loginRes);
             }
-
-            window.location = '/portfolio';
-
+            else {
+                window.location = '/portfolio'
+                this.setState({loginRes: "Welcome"})
+                console.log("user created");
+            }
         });
     }
 
@@ -39,6 +42,10 @@ class Account extends Component {
 
                 <div className='words'>
                     Create an Account
+                    <p className="accountErr"
+                    >
+                        {this.state.loginRes}
+                    </p>
                 </div>
                 <div>
                     <input
@@ -64,7 +71,7 @@ class Account extends Component {
                     onClick={this.handleSubmit}
                     ><span>Submit </span></button>
                 </div>
-                    </div>
+                </div>
         </div>
         )
     }
