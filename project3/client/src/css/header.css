@@ -13,6 +13,7 @@
     font-size: 72px;
     color: white;
     margin: 10px;
+    text-align: center;
 }
 .dropbtn {
     background-color: #555555;
@@ -73,4 +74,10 @@
   .dropdown:hover .bar3 {
     -webkit-transform: rotate(90deg) translate(-12px, -12px);
     transform: rotate(90deg) translate(-14px, -15px);
+  }
+  .userbx {
+    background-color: lightgray;
+    border-radius: 20px;
+    width: 100px;
+    text-align: center;
   }

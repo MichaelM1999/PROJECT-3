@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Link } from "react-router-dom";
 import API from '../../utils/api';
 import '../../css/login.css';
-import Footer from '../footer';
 class Login extends Component {
 
     state = {
@@ -31,6 +30,7 @@ class Login extends Component {
             }
             else {
                 window.location = '/portfolio'
+                sessionStorage.setItem("username", this.state.username)
             }
         });
     }

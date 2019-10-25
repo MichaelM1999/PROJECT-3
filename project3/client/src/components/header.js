@@ -1,10 +1,31 @@
-import React from 'react';
+import React, {Component} from 'react';
 import '../css/header.css';
 import { Link } from "react-router-dom";
-const Header = () => {
+class Header extends Component{
+  state = {
+    user: ""
+  }
+  componentDidMount(){
+    this.setState({user: sessionStorage.getItem("username")});
+}
+handleLogout = (event) => {
+  event.preventDefault();
+  sessionStorage.clear();
+  window.location = '/'
+}
+  render(){
     return(
-        <div className="container">
+      <div className="container">
             <h1 className="title">StockSim</h1>
+            <div className="userbx">
+              logged in as: 
+              <div className="userP">{this.state.user}</div>
+              <button
+              className="logoutbtn"
+              value="logout"
+              onClick={this.handleLogout}
+              >logout</button>
+            </div>
             <div className="dropdown">
                 <button className="dropbtn">
                     <div className='bar1'></div>
@@ -51,6 +72,7 @@ const Header = () => {
 
 </div>
     )
+  }
 }
 
 export default Header;

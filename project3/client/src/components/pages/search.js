@@ -7,6 +7,7 @@ import Recomend2 from '../stockrec2';
 import '../../css/search.css';
 import Footer from '../footer';
 import Header from '../header';
+import APIR from '../../utils/api';
 const Plotly = window.Plotly;
 const Plot = createPlotlyComponent(Plotly);
 
@@ -34,6 +35,7 @@ if (dayofweek === "Saturday") {
 }
 class Search extends Component{
     state = {
+        user: "",
         StockName: "",
         price:"",
         volume: "",
@@ -47,6 +49,29 @@ class Search extends Component{
         updownD: "",
         updownW: "",
         updownM: "",
+        followRes: "",
+    }
+    componentDidMount(){
+        this.setState({user: sessionStorage.getItem("username")});
+    }
+    handlefollow = (event) => {
+      event.preventDefault();
+        let stock = {
+          stock: this.state.StockName,
+          user: this.state.user
+        }
+        console.log(stock);
+        APIR.newStock(stock).then(res => {
+          if(res.data.err){
+            this.setState({followRes: "Already following "+ this.state.StockName});
+            alert(this.state.followRes);
+          }
+          else {
+            this.setState({followRes: this.state.StockName + " has been followed!"});
+            console.log(res.data);
+            console.log("Stock Followed");
+          }
+        })
     }
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -118,7 +143,7 @@ class Search extends Component{
               <Recomend2 />
                 <h1>{this.state.todaysdate}</h1>
                 <div className="searchbx">
-                    <div className="whattosearch">What would you like to search for?</div>
+                    <div className="whattosearch">What would you like to search for {this.state.user}?</div>
                     <input
                     className="wordbx"
                     type="text"
@@ -132,6 +157,12 @@ class Search extends Component{
                     value="submit"
                     onClick={this.handleSubmit}
                     ><span>Search</span></button>
+                    <button
+                    className="followBtn"
+                    type="submit"
+                    value="submit"
+                    onClick={this.handlefollow}
+                    >follow</button>
                 </div>
                   <div className="infoTab">
                     <h2 className="searching">
