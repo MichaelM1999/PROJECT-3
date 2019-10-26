@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "server.js",
+  "engines": {
+    "node": "12.2.0"
+  },
   "dependencies": {
     "animejs": "^3.1.0",
     "express": "^4.17.1",
