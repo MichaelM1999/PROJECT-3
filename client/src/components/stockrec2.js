@@ -63,16 +63,24 @@ class Recomend2 extends Component{
     }, 13000);
   }
 
-    render(){
-
-      return(
-        <div className="recomendBX2">
-          <h3 className="stockTxt2">{this.state.stock}</h3>
-        <p className="changepercent2 stockTxt2" style={{'color': this.state.upDown}}>
-          {this.state.changePercentage}
-        </p>
-        </div>
+  render(){
+    {if (this.state.changePercentage === NaN || this.state.changePercentage === ""){
+    return(
+      <div className="recomendBX2">
+      <p className="stockTxt">Popular Stocks</p>
+      <h3 className="stockTxt">please wait for our slow API ;)</h3>
+    </div>
     )
-  }
-}
+    } else {
+    return(
+    <div className="recomendBX2">
+      <p className="stockTxt">Popular Stocks</p>
+      <h3 className="stockTxt">{this.state.stock}</h3>
+    <p className="changepercent stockTxt" style={{'color': this.state.upDown}}>
+      {this.state.changePercentage}
+    </p>
+    </div>
+)
+}}
+}}
 export default Recomend2

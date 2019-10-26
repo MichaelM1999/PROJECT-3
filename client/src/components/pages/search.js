@@ -50,6 +50,7 @@ class Search extends Component{
         updownW: "",
         updownM: "",
         followRes: "",
+        APIres: "",
     }
     componentDidMount(){
         this.setState({user: sessionStorage.getItem("username")});
@@ -118,13 +119,18 @@ class Search extends Component{
         } else {
           this.setState({updownW: "down"})
         }
-        this.setState({ price: res.data["Time Series (Daily)"][todaysdate]["4. close"],
-                volume: res.data["Time Series (Daily)"][todaysdate]["6. volume"],
-                StockName: res.data["Meta Data"]["2. Symbol"]},
-                console.log(res),
-                console.log(this.state),
-                )
-    
+        if (dailySeries != undefined){
+
+          this.setState({ price: res.data["Time Series (Daily)"][todaysdate]["4. close"],
+          volume: res.data["Time Series (Daily)"][todaysdate]["6. volume"],
+          StockName: res.data["Meta Data"]["2. Symbol"]},
+          console.log(res),
+          console.log(this.state),
+          this.setState({APIres: null})
+          )
+        } else if(dailySeries=== undefined) {
+          this.setState({APIres: "chill homeboy too many api calls too fast"})
+        }
         },
       err => {
         console.log(err);
@@ -162,7 +168,8 @@ class Search extends Component{
                     type="submit"
                     value="submit"
                     onClick={this.handlefollow}
-                    >follow</button>
+                    ><span>follow</span></button>
+                    {this.state.APIres}
                 </div>
                   <div className="infoTab">
                     <h2 className="searching">

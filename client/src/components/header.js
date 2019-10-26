@@ -18,13 +18,13 @@ handleLogout = (event) => {
       <div className="container">
             <h1 className="title">StockSim</h1>
             <div className="userbx">
-              logged in as: 
+              <p className="userP">logged in as: </p>
               <div className="userP">{this.state.user}</div>
-              <button
-              className="logoutbtn"
-              value="logout"
-              onClick={this.handleLogout}
-              >logout</button>
+                <button
+                className="logoutbtn"
+                value="logout"
+                onClick={this.handleLogout}
+                >logout</button>
             </div>
             <div className="dropdown">
                 <button className="dropbtn">
