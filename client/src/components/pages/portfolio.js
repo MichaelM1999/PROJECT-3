@@ -50,7 +50,7 @@ class Portfolio extends Component{
         let searchValue = event.target.value;
         console.log(searchValue);
         search1.search(searchValue).then(res => {
-            const dailySeries = res.data["Time Series (Daily)"][todaysdate]['4. close'];
+            const dailySeries = "$"+res.data["Time Series (Daily)"][todaysdate]['4. close'];
             console.log(dailySeries);
             this.setState({
                 [searchValue]:dailySeries
