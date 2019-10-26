@@ -162,7 +162,7 @@ class Search extends Component{
                     type="submit"
                     value="submit"
                     onClick={this.handlefollow}
-                    >follow</button>
+                    ><span>follow</span></button>
                 </div>
                   <div className="infoTab">
                     <h2 className="searching">
