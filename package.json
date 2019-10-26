@@ -4,6 +4,7 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "engines": {
     "node": "12.2.0"
+
   },
   "main": "server.js",
   "dependencies": {
@@ -17,7 +18,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "cd backend && npm install && node index.js",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
