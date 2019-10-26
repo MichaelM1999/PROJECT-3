@@ -5,6 +5,7 @@
     margin-left: 20%;
     border-radius: 20px;
     box-shadow: 10px 15px 5px black;
+    color: white;
 }
 .whattosearch {
     font-size: 20px;
@@ -105,4 +106,44 @@ body, html {
 }
 .updown {
   color: white;
+}
+.followBtn {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.followBtn:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.followBtn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.followBtn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.followBtn:hover span {
+  padding-right: 25px;
+}
+
+.followBtn:hover span:after {
+  opacity: 1;
+  right: 0;
 }

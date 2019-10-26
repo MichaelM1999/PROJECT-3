@@ -64,8 +64,15 @@ class Recomend extends Component{
   }
 
     render(){
-
-      return(
+        {if (this.state.changePercentage === NaN || this.state.changePercentage === ""){
+        return(
+          <div className="recomendBX">
+          <p className="stockTxt">Popular Stocks</p>
+          <h3 className="stockTxt">please wait for our slow API ;)</h3>
+        </div>
+        )
+        } else {
+        return(
         <div className="recomendBX">
           <p className="stockTxt">Popular Stocks</p>
           <h3 className="stockTxt">{this.state.stock}</h3>
@@ -74,6 +81,7 @@ class Recomend extends Component{
         </p>
         </div>
     )
+  }}
   }
 }
 export default Recomend

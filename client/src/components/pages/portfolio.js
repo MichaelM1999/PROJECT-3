@@ -50,12 +50,16 @@ class Portfolio extends Component{
         let searchValue = event.target.value;
         console.log(searchValue);
         search1.search(searchValue).then(res => {
-            const dailySeries = res.data["Time Series (Daily)"][todaysdate]['4. close'];
+            const dailySeries = "$"+res.data["Time Series (Daily)"][todaysdate]['4. close'];
+            if (dailySeries != undefined){
+            
             console.log(dailySeries);
             this.setState({
                 [searchValue]:dailySeries
             });
-
+        } else if(dailySeries=== undefined) {
+            alert("our API sucks please wait ;)")
+        }
             console.log(this.state);
         });
 
@@ -86,14 +90,16 @@ render(){
         <div>
             <h1 className="wathclistTitle"
             >Welcome {this.state.user} to your WatchList</h1>
+            <div className="boxxxs">
                 {this.state.userFollow.map(stock => {
                     return <Stockdiv key={stock}
-                        handleclick={this.handleclick}
-                        name={stock}
+                    handleclick={this.handleclick}
+                    name={stock}
                     >
                         {this.state[stock]}
                     </Stockdiv>
                 })} 
+                </div>
         </div>
     </div>
     )
