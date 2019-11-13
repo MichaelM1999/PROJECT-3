@@ -15,4 +15,8 @@ router.route("/stock")
 
 router.route("/search")
   .post(stockController.find)
+
+router.route("/delete")
+  .post(stockController.delete)
+
 module.exports = router;
