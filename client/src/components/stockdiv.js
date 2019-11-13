@@ -19,6 +19,12 @@ const stockdiv = props => {
                 whats is worth?
             </button>
             }
+            <button
+                className='unfollowbtn'
+                onClick={props.handleUnfollow}
+                value={props.name}>
+                    Unfollow
+            </button>
 
         </div>
     )

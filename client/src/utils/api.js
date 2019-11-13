@@ -21,5 +21,9 @@ export default {
   getStocks: function(stocks) {
     console.log('searching stocks', stocks)
     return axios.post('/api/user/search', stocks)
+  },
+  deleteStock: function (stocks) {
+    console.log('deleting stock ', stocks)
+    return axios.post('/api/user/delete', stocks)
   }
 };

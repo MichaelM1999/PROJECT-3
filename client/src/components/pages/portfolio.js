@@ -57,14 +57,23 @@ class Portfolio extends Component{
             this.setState({
                 [searchValue]:dailySeries
             });
-        } else if(dailySeries=== undefined) {
+        } else if(dailySeries === undefined) {
             alert("our API sucks please wait ;)")
         }
             console.log(this.state);
         });
-
-
-
+    }
+    
+    handleUnfollow = (event) => {
+        event.preventDefault();
+        let stockunfollow = {
+            owner: this.state.user,
+            stock_name: event.target.value
+        }
+        console.log(stockunfollow);
+        API.deleteStock({stockunfollow}).then(res => {
+            window.location.reload()
+        })
     }
     followedStocks = () => {
         let user = {
@@ -95,6 +104,7 @@ render(){
                     return <Stockdiv key={stock}
                     handleclick={this.handleclick}
                     name={stock}
+                    handleUnfollow={this.handleUnfollow}
                     >
                         {this.state[stock]}
                     </Stockdiv>
